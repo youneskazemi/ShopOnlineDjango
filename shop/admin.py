@@ -14,3 +14,8 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ('available', 'created')
     list_editable = ('price',)
     raw_id_fields = ('category',)
+    actions = ('make_available',)
+
+    def make_available(self, request, queryset):
+        rows = queryset.update(available=True)
+        self.message_user(request, f'{rows} Updated')
