@@ -8,7 +8,7 @@ class User(AbstractBaseUser):
     full_name = models.CharField(max_length=100)
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
-    object = MyUserManager()
+    objects = MyUserManager()
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["full_name"]
 
