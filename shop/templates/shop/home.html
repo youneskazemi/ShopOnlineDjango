@@ -3,5 +3,15 @@
     Home
 {% endblock title %}
 {% block content %}
-    <h3>Home</h3>
+    {% for product in products %}
+        <div class="card" style="width: 18rem; display: inline-block">
+            <img class="card-img-top" width="250px" height="250px" style="object-fit: contain"
+                 src="{{ product.image.url }}"
+                 alt="Card image cap">
+            <div class="card-body text-center">
+                <a class="card-title" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+            </div>
+        </div>
+
+    {% endfor %}
 {% endblock content %}
