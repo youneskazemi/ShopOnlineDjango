@@ -12,6 +12,13 @@ class Cart:
             cart = self.session[CART_SESSION_ID] = dict()
         self.cart = cart
 
+    def remove(self, product):
+        product_id = str(product.id)
+
+        if product_id in self.cart:
+            del self.cart[product_id]
+            self.save()
+
     def add(self, product, quantity):
         product_id = str(product.id)
 
