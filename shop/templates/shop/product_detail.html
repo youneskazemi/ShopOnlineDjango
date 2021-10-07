@@ -15,7 +15,7 @@
         </div>
         <div class="card-footer bg-primary">
             {{ product.price }}$
-            <form action="" method="post">{% csrf_token %}
+            <form action="{% url "cart:cart_add" product.id %}" method="post">{% csrf_token %}
                 {{ form.as_p }}
                 <input type="submit" class="btn btn-secondary" value="add to cart"></form>
         </div>

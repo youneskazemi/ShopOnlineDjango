@@ -14,8 +14,5 @@ def home(request, slug=None):
 
 def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug)
-    if request.method == "POST":
-        pass
-    else:
-        form = CartAddForm
+    form = CartAddForm
     return render(request, 'shop/product_detail.html', {'product': product, 'form': form})
