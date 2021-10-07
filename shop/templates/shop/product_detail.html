@@ -13,8 +13,11 @@
         <div class="card-body">
             <p class="card-text">{{ product.description }}</p>
         </div>
-        <div class="card-footer">
+        <div class="card-footer bg-primary">
             {{ product.price }}$
+            <form action="" method="post">{% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" class="btn btn-secondary" value="add to cart"></form>
         </div>
     </div>
 {% endblock content %}
