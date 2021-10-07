@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
+{% load thumbnail %}
 {% block title %}
     Home
 {% endblock title %}
 {% block content %}
     {% for product in products %}
         <div class="card" style="width: 18rem; display: inline-block">
-            <img class="card-img-top" width="250px" height="250px" style="object-fit: contain"
-                 src="{{ product.image.url }}"
-                 alt="Card image cap">
+            {% thumbnail product.image "300x300" as img %}
+                <img class="card-img-top" width="250px" height="250px" style="object-fit: contain"
+                     src="{{ img.url }}"
+                     alt="Card image cap">
+            {% endthumbnail %}
             <div class="card-body text-center">
                 <a class="card-title" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
             </div>

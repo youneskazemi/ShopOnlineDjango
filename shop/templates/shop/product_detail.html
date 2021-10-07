@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
+{% load thumbnail %}
 {% block title %}
     {{ product.name }}
 {% endblock title %}
 {% block content %}
     <div class="card text-center mx-auto" style="width: 18rem;">
-        <img src="{{ product.image.url }}" class="card-img-top" alt="...">
+        {% thumbnail product.image "300x300" as img %}
+            <img src="{{ img.url }}" class="card-img-top" alt="...">
+        {% endthumbnail %}
         <small>{{ product.created }}</small>
         <div class="card-header">{{ product.name }}</div>
         <div class="card-body">
