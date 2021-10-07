@@ -27,5 +27,10 @@
 
             </tr>
         {% endfor %}
+        <tr>
+            <td>Total</td>
+            <td colspan="3"></td>
+            <td>{{ cart.get_total_price }}</td>
+        </tr>
     </table>
 {% endblock content %}
