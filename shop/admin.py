@@ -15,6 +15,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_editable = ('price',)
     raw_id_fields = ('category',)
     actions = ('make_available',)
+    prepopulated_fields = {'slug': ('name',)}
 
     def make_available(self, request, queryset):
         rows = queryset.update(available=True)
