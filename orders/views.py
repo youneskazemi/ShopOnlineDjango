@@ -5,6 +5,7 @@ from cart.cart import Cart
 from .forms import CouponForm
 from django.views.decorators.http import require_POST
 from django.utils import timezone
+from django.contrib import messages
 
 
 @login_required
@@ -36,6 +37,8 @@ def coupon_apply(request, order_id):
             order = Order.objects.get(id=order_id)
             order.discount = coupon.discount
             order.save()
+            messages.warning(request, "coupon added successfully", 'success')
             return redirect('orders:orders_detail', order_id)
         except Coupon.DoesNotExist:
+            messages.warning(request, "invalid coupon!", 'danger')
             return redirect('orders:orders_detail', order_id)

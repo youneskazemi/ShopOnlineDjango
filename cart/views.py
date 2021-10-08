@@ -3,6 +3,7 @@ from .cart import Cart
 from shop.models import Product
 from .forms import CartAddForm
 from django.views.decorators.http import require_POST
+from django.contrib import messages
 
 
 def detail(request):
@@ -18,7 +19,8 @@ def cart_add(request, product_id):
     if form.is_valid():
         cd = form.cleaned_data
         cart.add(product=product, quantity=cd['quantity'])
-    return redirect("cart:detail")
+        messages.success(request, f'{cd["quantity"]} {product.name} added successfully to your cart', 'success')
+    return redirect("shop:product_detail", product.slug)
 
 
 def cart_remove(request, product_id):
